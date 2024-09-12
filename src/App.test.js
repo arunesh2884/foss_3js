@@ -1,8 +1,25 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+// src/App.js
+import React from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import Model from './Model';
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
-});
+const App = () => {
+  return (
+    <div style={{ height: '100vh' }}>
+      <Canvas>
+        {/* Add lighting to the scene */}
+        <ambientLight intensity={0.4} />
+        <directionalLight position={[0, 5, 5]} intensity={1} />
+
+        {/* Render the 3D Model */}
+        <Model />
+
+        {/* Add orbit controls to navigate around the model */}
+        <OrbitControls />
+      </Canvas>
+    </div>
+  );
+};
+
+export default App;

@@ -1,25 +1,26 @@
-import logo from './logo.svg';
-import './App.css';
+// src/App.js
+import React from 'react';
+import { Canvas } from '@react-three/fiber';
+import { OrbitControls } from '@react-three/drei';
+import Model from './components/Model';
+import { Color } from 'three';
 
-function App() {
+const App = () => {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="bg" style={{ height: '100vh' }}>
+      <Canvas>
+        {/* Add lighting to the scene */}
+        <ambientLight intensity={1} />
+        <directionalLight position={[0, 5, 5]} intensity={1} />
+
+        {/* Render the 3D Model */}
+        <Model />
+
+        {/* Add orbit controls to navigate around the model */}
+        <OrbitControls />
+      </Canvas>
     </div>
   );
-}
+};
 
 export default App;
